@@ -7,10 +7,10 @@ calcularButton.addEventListener('click', async () => {
     const peso = pesoInput.value;
     const altura = alturaInput.value;
     const resposta = await fetch(`/calcularIMC?peso=${peso}&altura=${altura}`);
+    const dados = await resposta.json();
     if (!resposta.ok) {
-        throw new Error('Erro ao calcular IMC');
+        textoResultado.textContent = 'Erro ao calcular IMC';
     }else{
-        const dados = await resposta.json();
         textoResultado.textContent = `O IMC calculado é: ${dados.imc}`;
     }
 });
